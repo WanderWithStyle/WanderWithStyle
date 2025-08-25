@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Travel Planner</title>
+<style>
+body { font-family: Arial,sans-serif; margin:0; padding:0; background:#fff3f7; color:#333;}
+header {background:#ff6f91; color:white; padding:20px; display:flex; justify-content:space-between; align-items:center;}
+header nav a {color:white; margin:0 10px; text-decoration:none; font-weight:bold;}
+header nav a:hover {color:#ffe5f0;}
+section {padding:40px 20px; max-width:900px; margin:auto;}
+h1,h2 {color:#ff6f91;}
+button {padding:10px 20px; border:none; border-radius:5px; cursor:pointer;}
+.btn-primary {background:#ff6f91; color:white;}
+.btn-secondary {background:#ff85a2; color:white;}
+input,select,textarea {width:100%; padding:8px; margin:5px 0 15px; border-radius:5px; border:1px solid #ccc;}
+.card {background:white; padding:20px; border-radius:15px; box-shadow:0 4px 10px rgba(0,0,0,0.1); margin-bottom:10px;}
+</style>
+</head>
+<body>
+
+<header>
+<div>🌍 AI Travel Planner</div>
+<nav>
+<a href="#">Home</a>
+<a href="#custom">Custom Plan</a>
+<a href="#about">About</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
+
+<section>
+<h1>✨ Travel Plans That Fit You</h1>
+<p>Compila il modulo e ottieni un piano di viaggio personalizzato generato dall’AI!</p>
+</section>
+
+<section id="custom">
+<h2>Personalizza il Tuo Viaggio</h2>
+<div class="card">
+<label>Traveler Type:</label>
+<select id="travelerType">
+<option>Solo Female</option>
+<option>Solo Male</option>
+<option>LGBTQ+</option>
+<option>Couples</option>
+<option>Family</option>
+<option>Youth / Student</option>
+<option>Senior</option>
+<option>First-Time</option>
+<option>Plus-Size</option>
+<option>Pet-Friendly</option>
+<option>Faith-Friendly</option>
+<option>Accessible</option>
+</select>
+
+<label>Continent:</label>
+<select id="continent">
+<option>Europe</option>
+<option>Asia</option>
+<option>Africa</option>
+<option>North America</option>
+<option>South America</option>
+<option>Oceania</option>
+</select>
+
+<label>Country:</label>
+<input type="text" id="country" placeholder="Es. Giappone">
+
+<label>Duration:</label>
+<select id="duration">
+<option>1 Week</option>
+<option>10 Days</option>
+<option>2 Weeks</option>
+<option>3 Weeks</option>
+<option>1 Month</option>
+</select>
+
+<label>Travel Type:</label>
+<select id="travelType">
+<option>Adventure</option>
+<option>Culture</option>
+<option>Relaxation</option>
+<option>Religious</option>
+<option>Food & Wine</option>
+</select>
+
+<label>Notes / Preferences:</label>
+<textarea id="notes" placeholder="Es. Voglio visitare templi e cibo locale"></textarea>
+
+<button class="btn-secondary" id="previewBtn">Mostra Anteprima</button>
+</div>
+
+<div id="preview" class="card" style="display:none; margin-top:20px;">
+<h3>👀 Anteprima del Piano</h3>
+<p id="previewText"></p>
+<button class="btn-primary" id="checkoutBtn">💳 Paga e Ricevi PDF Completo</button>
+</div>
+</section>
+
+<section id="about">
+<h2>About</h2>
+<p>Questo sito genera piani di viaggio personalizzati usando l’intelligenza artificiale. Il PDF completo viene generato solo dopo il pagamento sicuro.</p>
+</section>
+
+<section id="contact">
+<h2>Contact</h2>
+<p>Email: <a href="mailto:customplans@domain.com">customplans@domain.com</a></p>
+</section>
+
+<script>
+const previewBtn = document.getElementById('previewBtn');
+const checkoutBtn = document.getElementById('checkoutBtn');
+const previewDiv = document.getElementById('preview');
+const previewText = document.getElementById('previewText');
+
+previewBtn.addEventListener('click', async () => {
+  const data = {
+    travelerType: document.getElementById('travelerType').value,
+    continent: document.getElementById('continent').value,
+    country: document.getElementById('country').value,
+    duration: document.getElementById('duration').value,
+    travelType: document.getElementById('travelType').value,
+    notes: document.getElementById('notes').value
+  };
+  previewText.innerText = "Caricamento anteprima...";
+  previewDiv.style.display = 'block';
+  try {
+    const res = await fetch('/.netlify/functions/preview-plan', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(data)
+    });
+    const json = await res.json();
+    previewText.innerText = json.preview;
+  } catch (err) {
+    previewText.innerText = "Errore generando anteprima.";
+  }
+});
+
+checkoutBtn.addEventListener('click', async () => {
+  const data = {
+    travelerType: document.getElementById('travelerType').value,
+    continent: document.getElementById('continent').value,
+    country: document.getElementById('country').value,
+    duration: document.getElementById('duration').value,
+    travelType: document.getElementById('travelType').value,
+    notes: document.getElementById('notes').value
+  };
+  const res = await fetch('/.netlify/functions/create-checkout-session', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify(data)
+  });
+  const json = await res.json();
+  window.location = json.url;
+});
+</script>
+
+</body>
+</html>
