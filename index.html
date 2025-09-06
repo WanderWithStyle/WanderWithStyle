@@ -1,117 +1,243 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wander With Style - AI Travel Planner</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+body {
+  margin:0;
+  font-family: 'Poppins', sans-serif;
+  background: #e6f7ff;
+  color: #333;
+}
+
+header {
+  background: #66c2ff;
+  color: white;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+header nav a {
+  color: white;
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+header nav a:hover {
+  color: #b3e5fc;
+}
+
+.hero {
+  background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  text-shadow: 2px 2px 12px rgba(0,0,0,0.4);
+}
+
+section {
+  padding: 60px 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #3399ff;
+}
+
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease;
+  opacity: 0;
+  animation: fadeIn 0.8s forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity:1; }
+}
+
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.button-group button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 30px;
+  background-color: #cceeff;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.button-group button.active, .button-group button:hover {
+  background-color: #3399ff;
+  color: white;
+  transform: scale(1.05);
+}
+
+button.btn-primary {
+  background-color: #3399ff;
+  color: white;
+  padding: 15px 30px;
+  font-size: 1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button.btn-primary:hover {
+  background-color: #007acc;
+}
+
+textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  resize: none;
+}
+
+/* Icone emoji nei pulsanti */
+.button-group button span.icon {
+  font-size: 1.2rem;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div>🌍 Wander With Style</div>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#custom">Custom Plan</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <h1>✨ Travel Plans That Fit You</h1>
+  <p>Scopri il tuo viaggio perfetto generato dall’AI</p>
+</div>
+
 <section id="custom">
   <h2>Personalizza il Tuo Viaggio</h2>
   <div class="card">
-
-    <!-- Traveler Type -->
     <label>Traveler Type:</label>
     <div class="button-group" id="travelerType">
-      <button data-value="Solo Female">Solo Female</button>
-      <button data-value="Solo Male">Solo Male</button>
-      <button data-value="LGBTQ+">LGBTQ+</button>
-      <button data-value="Couples">Couples</button>
-      <button data-value="Family">Family</button>
-      <button data-value="Youth / Student">Youth / Student</button>
-      <button data-value="Senior">Senior</button>
-      <button data-value="First-Time">First-Time</button>
-      <button data-value="Plus-Size">Plus-Size</button>
-      <button data-value="Pet-Friendly">Pet-Friendly</button>
-      <button data-value="Faith-Friendly">Faith-Friendly</button>
-      <button data-value="Accessible">Accessible</button>
+      <button data-value="Solo Female"><span class="icon">👩‍🦰</span> Solo Female</button>
+      <button data-value="Solo Male"><span class="icon">👨</span> Solo Male</button>
+      <button data-value="LGBTQ+"><span class="icon">🏳️‍🌈</span> LGBTQ+</button>
+      <button data-value="Couples"><span class="icon">❤️</span> Couples</button>
+      <button data-value="Family"><span class="icon">👨‍👩‍👧</span> Family</button>
     </div>
 
-    <!-- Continent -->
     <label>Continent:</label>
     <div class="button-group" id="continent">
-      <button data-value="Europe">Europe</button>
-      <button data-value="Asia">Asia</button>
-      <button data-value="Africa">Africa</button>
-      <button data-value="North America">North America</button>
-      <button data-value="South America">South America</button>
-      <button data-value="Oceania">Oceania</button>
+      <button data-value="Europe"><span class="icon">🇪🇺</span> Europe</button>
+      <button data-value="Asia"><span class="icon">🌏</span> Asia</button>
+      <button data-value="Africa"><span class="icon">🌍</span> Africa</button>
+      <button data-value="North America"><span class="icon">🇺🇸</span> North America</button>
+      <button data-value="Oceania"><span class="icon">🌊</span> Oceania</button>
     </div>
 
-    <!-- Duration -->
     <label>Duration:</label>
     <div class="button-group" id="duration">
       <button data-value="1 Week">1 Week</button>
-      <button data-value="10 Days">10 Days</button>
       <button data-value="2 Weeks">2 Weeks</button>
-      <button data-value="3 Weeks">3 Weeks</button>
       <button data-value="1 Month">1 Month</button>
     </div>
 
-    <!-- Travel Type -->
     <label>Travel Type:</label>
     <div class="button-group" id="travelType">
-      <button data-value="Adventure">Adventure</button>
-      <button data-value="Culture">Culture</button>
-      <button data-value="Relaxation">Relaxation</button>
-      <button data-value="Religious">Religious</button>
-      <button data-value="Food & Wine">Food & Wine</button>
+      <button data-value="Adventure">🧗 Adventure</button>
+      <button data-value="Culture">🏛️ Culture</button>
+      <button data-value="Relaxation">🌴 Relaxation</button>
     </div>
 
-    <!-- Notes -->
     <label>Notes / Preferences:</label>
     <textarea id="notes" placeholder="Es. Voglio visitare templi e cibo locale"></textarea>
 
-    <button class="btn-secondary" id="previewBtn">Mostra Anteprima</button>
+    <button class="btn-primary" id="previewBtn">Mostra Anteprima</button>
   </div>
 
-  <div id="preview" class="card" style="display:none; margin-top:20px;">
+  <div id="preview" class="card" style="display:none;">
     <h3>👀 Anteprima del Piano</h3>
     <p id="previewText"></p>
     <button class="btn-primary" id="checkoutBtn">💳 Paga e Ricevi PDF Completo</button>
   </div>
 </section>
 
-<!-- CSS -->
-<style>
-.button-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 15px;
-}
+<section id="about">
+<h2>About</h2>
+<p>Questo sito genera piani di viaggio personalizzati usando l’intelligenza artificiale. Il PDF completo viene generato solo dopo il pagamento sicuro.</p>
+</section>
 
-.button-group button {
-  padding: 8px 15px;
-  border: 1px solid #ccc;
-  border-radius: 25px;
-  background-color: #e0f7fa; /* baby blue */
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
+<section id="contact">
+<h2>Contact</h2>
+<p>Email: <a href="mailto:customplans@wanderwithstyle.com">customplans@wanderwithstyle.com</a></p>
+</section>
 
-.button-group button:hover {
-  background-color: #b2ebf2;
-}
-
-.button-group button.active {
-  background-color: #00bcd4;
-  color: white;
-  border-color: #00acc1;
-}
-</style>
-
-<!-- JavaScript -->
 <script>
+// Gestione selezione pulsanti
 function setupButtonGroup(groupId) {
   const group = document.getElementById(groupId);
   const buttons = group.querySelectorAll('button');
   buttons.forEach(btn => {
     btn.addEventListener('click', () => {
-      // rimuovi classe active dagli altri
       buttons.forEach(b => b.classList.remove('active'));
-      // aggiungi classe active al pulsante cliccato
       btn.classList.add('active');
     });
   });
 }
+['travelerType','continent','duration','travelType'].forEach(setupButtonGroup);
 
-// Inizializza tutti i gruppi
-setupButtonGroup('travelerType');
-setupButtonGroup('continent');
-setupButtonGroup('duration');
-setupButtonGroup('travelType');
+// Anteprima e pagamento
+const previewBtn = document.getElementById('previewBtn');
+const checkoutBtn = document.getElementById('checkoutBtn');
+const previewDiv = document.getElementById('preview');
+const previewText = document.getElementById('previewText');
+
+previewBtn.addEventListener('click', async () => {
+  previewDiv.style.display = 'block';
+  previewText.innerText = "Caricamento anteprima...";
+  // Qui dovrai collegare il backend con OpenAI per generare anteprima
+  setTimeout(() => { previewText.innerText = "Anteprima generata dall'AI!"; }, 1000);
+});
+
+checkoutBtn.addEventListener('click', () => {
+  alert("Qui si collegherà Stripe per il pagamento.");
+});
 </script>
 
+</body>
+</html>
