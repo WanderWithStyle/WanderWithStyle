@@ -1,367 +1,117 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WanderWithStyle - Pianifica il Tuo Viaggio</title>
+<section id="custom">
+  <h2>Personalizza il Tuo Viaggio</h2>
+  <div class="card">
+
+    <!-- Traveler Type -->
+    <label>Traveler Type:</label>
+    <div class="button-group" id="travelerType">
+      <button data-value="Solo Female">Solo Female</button>
+      <button data-value="Solo Male">Solo Male</button>
+      <button data-value="LGBTQ+">LGBTQ+</button>
+      <button data-value="Couples">Couples</button>
+      <button data-value="Family">Family</button>
+      <button data-value="Youth / Student">Youth / Student</button>
+      <button data-value="Senior">Senior</button>
+      <button data-value="First-Time">First-Time</button>
+      <button data-value="Plus-Size">Plus-Size</button>
+      <button data-value="Pet-Friendly">Pet-Friendly</button>
+      <button data-value="Faith-Friendly">Faith-Friendly</button>
+      <button data-value="Accessible">Accessible</button>
+    </div>
+
+    <!-- Continent -->
+    <label>Continent:</label>
+    <div class="button-group" id="continent">
+      <button data-value="Europe">Europe</button>
+      <button data-value="Asia">Asia</button>
+      <button data-value="Africa">Africa</button>
+      <button data-value="North America">North America</button>
+      <button data-value="South America">South America</button>
+      <button data-value="Oceania">Oceania</button>
+    </div>
+
+    <!-- Duration -->
+    <label>Duration:</label>
+    <div class="button-group" id="duration">
+      <button data-value="1 Week">1 Week</button>
+      <button data-value="10 Days">10 Days</button>
+      <button data-value="2 Weeks">2 Weeks</button>
+      <button data-value="3 Weeks">3 Weeks</button>
+      <button data-value="1 Month">1 Month</button>
+    </div>
+
+    <!-- Travel Type -->
+    <label>Travel Type:</label>
+    <div class="button-group" id="travelType">
+      <button data-value="Adventure">Adventure</button>
+      <button data-value="Culture">Culture</button>
+      <button data-value="Relaxation">Relaxation</button>
+      <button data-value="Religious">Religious</button>
+      <button data-value="Food & Wine">Food & Wine</button>
+    </div>
+
+    <!-- Notes -->
+    <label>Notes / Preferences:</label>
+    <textarea id="notes" placeholder="Es. Voglio visitare templi e cibo locale"></textarea>
+
+    <button class="btn-secondary" id="previewBtn">Mostra Anteprima</button>
+  </div>
+
+  <div id="preview" class="card" style="display:none; margin-top:20px;">
+    <h3>👀 Anteprima del Piano</h3>
+    <p id="previewText"></p>
+    <button class="btn-primary" id="checkoutBtn">💳 Paga e Ricevi PDF Completo</button>
+  </div>
+</section>
+
+<!-- CSS -->
 <style>
-/* FONT E RESET */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Lora:ital@1&display=swap');
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-    font-family: 'Poppins', sans-serif;
-    background: #E6F0FA;
-    color: #333;
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
 }
 
-/* HEADER */
-header {
-    background: #A7C7E7;
-    padding: 20px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.button-group button {
+  padding: 8px 15px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  background-color: #e0f7fa; /* baby blue */
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-header .logo {
-    font-size: 1.8rem;
-    font-weight: 600;
-    color: #fff;
+.button-group button:hover {
+  background-color: #b2ebf2;
 }
 
-header nav ul {
-    list-style: none;
-    display: flex;
-}
-
-header nav ul li {
-    margin-left: 25px;
-}
-
-header nav ul li a {
-    text-decoration: none;
-    color: #fff;
-    font-weight: 600;
-    transition: color 0.3s;
-}
-
-header nav ul li a:hover {
-    color: #F8BBD0;
-}
-
-/* HERO */
-.hero {
-    background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e') center/cover no-repeat;
-    text-align: center;
-    color: white;
-    padding: 120px 20px;
-}
-
-.hero h1 {
-    font-size: 2.8rem;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-}
-
-.hero .btn-primary {
-    padding: 12px 25px;
-    background: #F8BBD0;
-    color: #fff;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: background 0.3s;
-}
-
-.hero .btn-primary:hover {
-    background: #ff85a2;
-}
-
-/* SEZIONE COME FUNZIONA */
-#come-funziona {
-    padding: 60px 20px;
-    text-align: center;
-}
-
-#come-funziona h2 {
-    font-size: 2rem;
-    margin-bottom: 40px;
-    color: #4A90E2;
-}
-
-.passaggi {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-}
-
-.passaggio {
-    background: #fff;
-    padding: 25px;
-    border-radius: 15px;
-    width: 250px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    transition: transform 0.3s;
-}
-
-.passaggio:hover {
-    transform: translateY(-5px);
-}
-
-.passaggio img {
-    width: 60px;
-    margin-bottom: 15px;
-}
-
-.passaggio p {
-    font-weight: 600;
-    font-size: 1.1rem;
-}
-
-/* SEZIONE CUSTOM PLAN */
-#piano {
-    padding: 60px 20px;
-    max-width: 900px;
-    margin: auto;
-}
-
-.card {
-    background: #fff;
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
-}
-
-.card label {
-    font-weight: 600;
-    display: block;
-    margin: 10px 0 5px;
-}
-
-.card input, .card select, .card textarea {
-    width: 100%;
-    padding: 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    margin-bottom: 15px;
-}
-
-button {
-    cursor: pointer;
-    border: none;
-    border-radius: 6px;
-    padding: 12px 25px;
-    font-weight: 600;
-    transition: background 0.3s;
-}
-
-.btn-primary {
-    background: #4A90E2;
-    color: white;
-}
-
-.btn-primary:hover {
-    background: #357ABD;
-}
-
-.btn-secondary {
-    background: #F8BBD0;
-    color: white;
-}
-
-.btn-secondary:hover {
-    background: #ff85a2;
-}
-
-/* SEZIONE CONTATTI */
-#contatti {
-    background: #fff;
-    padding: 60px 20px;
-    text-align: center;
-    border-radius: 15px;
-    margin: 40px auto;
-    max-width: 600px;
-}
-
-#contatti input, #contatti textarea {
-    margin-bottom: 20px;
-}
-
-/* FOOTER */
-footer {
-    background: #4A90E2;
-    color: #fff;
-    text-align: center;
-    padding: 25px 20px;
-    margin-top: 40px;
-}
-
-/* RESPONSIVE */
-@media(max-width:768px){
-    .passaggi {
-        flex-direction: column;
-        align-items: center;
-    }
-    header {
-        flex-direction: column;
-        gap: 15px;
-    }
+.button-group button.active {
+  background-color: #00bcd4;
+  color: white;
+  border-color: #00acc1;
 }
 </style>
-</head>
-<body>
 
-<header>
-    <div class="logo">WanderWithStyle</div>
-    <nav>
-        <ul>
-            <li><a href="#come-funziona">Come Funziona</a></li>
-            <li><a href="#piano">Custom Plan</a></li>
-            <li><a href="#contatti">Contatti</a></li>
-        </ul>
-    </nav>
-</header>
-
-<section class="hero">
-    <h1>✨ Pianifica il tuo viaggio da sogno con WanderWithStyle</h1>
-    <a href="#piano" class="btn-primary">Inizia Ora</a>
-</section>
-
-<section id="come-funziona">
-    <h2>Come Funziona</h2>
-    <div class="passaggi">
-        <div class="passaggio">
-            <img src="https://cdn-icons-png.flaticon.com/512/123/123927.png" alt="Esplora">
-            <p>Esplora Destinazioni</p>
-        </div>
-        <div class="passaggio">
-            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Personalizza">
-            <p>Personalizza il Tuo Piano</p>
-        </div>
-        <div class="passaggio">
-            <img src="https://cdn-icons-png.flaticon.com/512/1828/1828843.png" alt="Prenota">
-            <p>Prenota Facilmente</p>
-        </div>
-    </div>
-</section>
-
-<section id="piano">
-    <h2>Personalizza il Tuo Viaggio</h2>
-    <div class="card">
-        <label>Traveler Type:</label>
-        <select id="travelerType">
-            <option>Solo Female</option>
-            <option>Solo Male</option>
-            <option>LGBTQ+</option>
-            <option>Couples</option>
-            <option>Family</option>
-        </select>
-
-        <label>Continent:</label>
-        <select id="continent">
-            <option>Europe</option>
-            <option>Asia</option>
-            <option>Africa</option>
-        </select>
-
-        <label>Country:</label>
-        <input type="text" id="country" placeholder="Es. Giappone">
-
-        <label>Duration:</label>
-        <select id="duration">
-            <option>1 Week</option>
-            <option>2 Weeks</option>
-            <option>3 Weeks</option>
-        </select>
-
-        <label>Travel Type:</label>
-        <select id="travelType">
-            <option>Adventure</option>
-            <option>Culture</option>
-            <option>Relaxation</option>
-            <option>Food & Wine</option>
-        </select>
-
-        <label>Notes / Preferences:</label>
-        <textarea id="notes" placeholder="Es. Voglio visitare templi e cibo locale"></textarea>
-
-        <button class="btn-secondary" id="previewBtn">Mostra Anteprima</button>
-    </div>
-
-    <div id="preview" class="card" style="display:none; margin-top:20px;">
-        <h3>👀 Anteprima del Piano</h3>
-        <p id="previewText"></p>
-        <button class="btn-primary" id="checkoutBtn">💳 Paga e Ricevi PDF Completo</button>
-    </div>
-</section>
-
-<section id="contatti">
-    <h2>Contattaci</h2>
-    <form>
-        <input type="text" placeholder="Nome" required>
-        <input type="email" placeholder="Email" required>
-        <textarea placeholder="Scrivi il tuo messaggio..." required></textarea>
-        <button type="submit" class="btn-primary">Invia</button>
-    </form>
-</section>
-
-<footer>
-    &copy; 2025 WanderWithStyle. Tutti i diritti riservati.
-</footer>
-
+<!-- JavaScript -->
 <script>
-// PREVIEW E CHECKOUT LOGICA (funziona con backend collegato a Netlify Functions)
-const previewBtn = document.getElementById('previewBtn');
-const checkoutBtn = document.getElementById('checkoutBtn');
-const previewDiv = document.getElementById('preview');
-const previewText = document.getElementById('previewText');
-
-previewBtn.addEventListener('click', async () => {
-    const data = {
-        travelerType: document.getElementById('travelerType').value,
-        continent: document.getElementById('continent').value,
-        country: document.getElementById('country').value,
-        duration: document.getElementById('duration').value,
-        travelType: document.getElementById('travelType').value,
-        notes: document.getElementById('notes').value
-    };
-    previewText.innerText = "Caricamento anteprima...";
-    previewDiv.style.display = 'block';
-    try {
-        const res = await fetch('/.netlify/functions/preview-plan', {
-            method: 'POST',
-            headers: {'Content-Type':'application/json'},
-            body: JSON.stringify(data)
-        });
-        const json = await res.json();
-        previewText.innerText = json.preview;
-    } catch (err) {
-        previewText.innerText = "Errore generando anteprima.";
-    }
-});
-
-checkoutBtn.addEventListener('click', async () => {
-    const data = {
-        travelerType: document.getElementById('travelerType').value,
-        continent: document.getElementById('continent').value,
-        country: document.getElementById('country').value,
-        duration: document.getElementById('duration').value,
-        travelType: document.getElementById('travelType').value,
-        notes: document.getElementById('notes').value
-    };
-    const res = await fetch('/.netlify/functions/create-checkout-session', {
-        method: 'POST',
-        headers: {'Content-Type':'application/json'},
-        body: JSON.stringify(data)
+function setupButtonGroup(groupId) {
+  const group = document.getElementById(groupId);
+  const buttons = group.querySelectorAll('button');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // rimuovi classe active dagli altri
+      buttons.forEach(b => b.classList.remove('active'));
+      // aggiungi classe active al pulsante cliccato
+      btn.classList.add('active');
     });
-    const json = await res.json();
-    window.location = json.url;
-});
+  });
+}
+
+// Inizializza tutti i gruppi
+setupButtonGroup('travelerType');
+setupButtonGroup('continent');
+setupButtonGroup('duration');
+setupButtonGroup('travelType');
 </script>
 
-</body>
-</html>
