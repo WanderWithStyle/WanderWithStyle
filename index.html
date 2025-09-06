@@ -9,12 +9,12 @@
 body {
   margin:0;
   font-family: 'Poppins', sans-serif;
-  background: #e6f7ff;
+  background: #e0f7fa;
   color: #333;
 }
 
 header {
-  background: #66c2ff;
+  background: #00bcd4;
   color: white;
   padding: 20px 40px;
   display: flex;
@@ -32,7 +32,7 @@ header nav a {
 }
 
 header nav a:hover {
-  color: #b3e5fc;
+  color: #b2ebf2;
 }
 
 .hero {
@@ -60,7 +60,7 @@ section {
 h2 {
   text-align: center;
   margin-bottom: 40px;
-  color: #3399ff;
+  color: #00acc1;
 }
 
 .card {
@@ -89,7 +89,7 @@ h2 {
   padding: 12px 20px;
   border: none;
   border-radius: 30px;
-  background-color: #cceeff;
+  background-color: #b2ebf2;
   cursor: pointer;
   font-weight: 600;
   transition: all 0.3s ease;
@@ -99,13 +99,13 @@ h2 {
 }
 
 .button-group button.active, .button-group button:hover {
-  background-color: #3399ff;
+  background-color: #00acc1;
   color: white;
   transform: scale(1.05);
 }
 
 button.btn-primary {
-  background-color: #3399ff;
+  background-color: #00acc1;
   color: white;
   padding: 15px 30px;
   font-size: 1rem;
@@ -115,7 +115,7 @@ button.btn-primary {
 }
 
 button.btn-primary:hover {
-  background-color: #007acc;
+  background-color: #0097a7;
 }
 
 textarea {
@@ -126,7 +126,6 @@ textarea {
   resize: none;
 }
 
-/* Icone emoji nei pulsanti */
 .button-group button span.icon {
   font-size: 1.2rem;
 }
@@ -154,26 +153,52 @@ textarea {
   <div class="card">
     <label>Traveler Type:</label>
     <div class="button-group" id="travelerType">
-      <button data-value="Solo Female"><span class="icon">👩‍🦰</span> Solo Female</button>
-      <button data-value="Solo Male"><span class="icon">👨</span> Solo Male</button>
-      <button data-value="LGBTQ+"><span class="icon">🏳️‍🌈</span> LGBTQ+</button>
-      <button data-value="Couples"><span class="icon">❤️</span> Couples</button>
-      <button data-value="Family"><span class="icon">👨‍👩‍👧</span> Family</button>
+      <button data-value="Solo Female">👩‍🦰 Solo Female</button>
+      <button data-value="Solo Male">👨 Solo Male</button>
+      <button data-value="LGBTQ+">🏳️‍🌈 LGBTQ+</button>
+      <button data-value="Couples">❤️ Couples</button>
+      <button data-value="Family">👨‍👩‍👧 Family</button>
+      <button data-value="Youth / Student">🎓 Youth / Student</button>
+      <button data-value="Senior">👵 Senior</button>
+      <button data-value="First-Time">✨ First-Time</button>
+      <button data-value="Plus-Size">💃 Plus-Size</button>
+      <button data-value="Pet-Friendly">🐶 Pet-Friendly</button>
+      <button data-value="Faith-Friendly">🙏 Faith-Friendly</button>
+      <button data-value="Accessible">♿ Accessible</button>
     </div>
 
     <label>Continent:</label>
     <div class="button-group" id="continent">
-      <button data-value="Europe"><span class="icon">🇪🇺</span> Europe</button>
-      <button data-value="Asia"><span class="icon">🌏</span> Asia</button>
-      <button data-value="Africa"><span class="icon">🌍</span> Africa</button>
-      <button data-value="North America"><span class="icon">🇺🇸</span> North America</button>
-      <button data-value="Oceania"><span class="icon">🌊</span> Oceania</button>
+      <button data-value="Europe">🇪🇺 Europe</button>
+      <button data-value="Asia">🌏 Asia</button>
+      <button data-value="Africa">🌍 Africa</button>
+      <button data-value="North America">🇺🇸 North America</button>
+      <button data-value="South America">🌎 South America</button>
+      <button data-value="Oceania">🌊 Oceania</button>
+    </div>
+
+    <label>Country:</label>
+    <div class="button-group" id="country">
+      <button data-value="Italy">🇮🇹 Italy</button>
+      <button data-value="France">🇫🇷 France</button>
+      <button data-value="Japan">🇯🇵 Japan</button>
+      <button data-value="USA">🇺🇸 USA</button>
+      <button data-value="Australia">🇦🇺 Australia</button>
+      <button data-value="Brazil">🇧🇷 Brazil</button>
+      <button data-value="Greece">🇬🇷 Greece</button>
+      <button data-value="Portugal">🇵🇹 Portugal</button>
+      <button data-value="Spain">🇪🇸 Spain</button>
+      <button data-value="Thailand">🇹🇭 Thailand</button>
+      <button data-value="Egypt">🇪🇬 Egypt</button>
+      <button data-value="South Africa">🇿🇦 South Africa</button>
     </div>
 
     <label>Duration:</label>
     <div class="button-group" id="duration">
       <button data-value="1 Week">1 Week</button>
+      <button data-value="10 Days">10 Days</button>
       <button data-value="2 Weeks">2 Weeks</button>
+      <button data-value="3 Weeks">3 Weeks</button>
       <button data-value="1 Month">1 Month</button>
     </div>
 
@@ -182,6 +207,12 @@ textarea {
       <button data-value="Adventure">🧗 Adventure</button>
       <button data-value="Culture">🏛️ Culture</button>
       <button data-value="Relaxation">🌴 Relaxation</button>
+      <button data-value="Religious">⛪ Religious</button>
+      <button data-value="Food & Wine">🍷 Food & Wine</button>
+      <button data-value="Romantic">💖 Romantic</button>
+      <button data-value="Wildlife">🐘 Wildlife</button>
+      <button data-value="Luxury">💎 Luxury</button>
+      <button data-value="Budget">💰 Budget</button>
     </div>
 
     <label>Notes / Preferences:</label>
@@ -208,7 +239,7 @@ textarea {
 </section>
 
 <script>
-// Gestione selezione pulsanti
+// Pulsanti selezione
 function setupButtonGroup(groupId) {
   const group = document.getElementById(groupId);
   const buttons = group.querySelectorAll('button');
@@ -219,7 +250,7 @@ function setupButtonGroup(groupId) {
     });
   });
 }
-['travelerType','continent','duration','travelType'].forEach(setupButtonGroup);
+['travelerType','continent','country','duration','travelType'].forEach(setupButtonGroup);
 
 // Anteprima e pagamento
 const previewBtn = document.getElementById('previewBtn');
@@ -230,7 +261,7 @@ const previewText = document.getElementById('previewText');
 previewBtn.addEventListener('click', async () => {
   previewDiv.style.display = 'block';
   previewText.innerText = "Caricamento anteprima...";
-  // Qui dovrai collegare il backend con OpenAI per generare anteprima
+  // Qui collegare backend con OpenAI per generare anteprima
   setTimeout(() => { previewText.innerText = "Anteprima generata dall'AI!"; }, 1000);
 });
 
