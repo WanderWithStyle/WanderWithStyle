@@ -3,138 +3,54 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wander With Style - AI Travel Planner</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<title>WanderWithStyle 🌍</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 <style>
-body {
-  margin:0;
-  font-family: 'Poppins', sans-serif;
-  background: #e0f7fa;
-  color: #333;
-}
+  /* Base */
+  * { margin:0; padding:0; box-sizing:border-box; font-family: 'Montserrat', sans-serif; }
+  body { background: #f5f7fa; color:#333; }
+  h1,h2,h3 { font-weight:600; color:#1e1e2f; }
 
-header {
-  background: #00bcd4;
-  color: white;
-  padding: 20px 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
+  /* Header */
+  header { background: #ffffff; padding: 20px 40px; display:flex; justify-content:space-between; align-items:center; box-shadow: 0 3px 10px rgba(0,0,0,0.1); position: sticky; top:0; z-index:1000; }
+  header .logo { font-size:1.6rem; color:#1e1e2f; font-weight:bold; }
+  header nav a { margin:0 15px; text-decoration:none; color:#1e1e2f; font-weight:600; transition:0.3s; }
+  header nav a:hover { color:#ff6f91; }
 
-header nav a {
-  color: white;
-  margin: 0 15px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: 0.3s;
-}
+  /* Hero */
+  .hero { background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e') center/cover no-repeat; height:80vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; color:white; padding:0 20px; }
+  .hero h1 { font-size:3rem; margin-bottom:20px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+  .hero button { margin:10px; padding:12px 30px; border:none; border-radius:8px; cursor:pointer; font-weight:600; transition:0.3s; }
+  .btn-primary { background:#ff6f91; color:white; }
+  .btn-primary:hover { background:#ff85a2; }
+  .btn-secondary { background:#6c5ce7; color:white; }
+  .btn-secondary:hover { background:#a29bfe; }
 
-header nav a:hover {
-  color: #b2ebf2;
-}
+  /* Section */
+  section { max-width:1200px; margin:auto; padding:60px 20px; }
+  .card { background:white; border-radius:20px; padding:30px; box-shadow:0 8px 20px rgba(0,0,0,0.1); margin-bottom:40px; transition:0.3s; }
+  .card:hover { transform: translateY(-5px); }
 
-.hero {
-  background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
-  height: 80vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: white;
-}
+  /* Buttons moderni */
+  .button-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:15px; margin-top:20px; }
+  .button-grid button { padding:12px; border:none; border-radius:15px; font-weight:600; color:white; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:0.3s; }
+  .button-grid button svg { width:20px; height:20px; margin-right:8px; fill:white; }
 
-.hero h1 {
-  font-size: 3rem;
-  text-shadow: 2px 2px 12px rgba(0,0,0,0.4);
-}
+  /* Preview */
+  #preview { display:none; margin-top:20px; padding:20px; border-radius:15px; background:#f0f4f8; }
 
-section {
-  padding: 60px 20px;
-  max-width: 1000px;
-  margin: auto;
-}
+  /* Inputs */
+  input[type=date], select, textarea { width:100%; padding:10px; margin:10px 0 20px; border-radius:10px; border:1px solid #ccc; }
 
-h2 {
-  text-align: center;
-  margin-bottom: 40px;
-  color: #00acc1;
-}
+  /* Footer */
+  footer { text-align:center; padding:30px; color:#777; font-size:0.9rem; }
 
-.card {
-  background: white;
-  padding: 25px;
-  border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  margin-bottom: 30px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease;
-  opacity: 0;
-  animation: fadeIn 0.8s forwards;
-}
-
-@keyframes fadeIn {
-  to { opacity:1; }
-}
-
-.button-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 20px;
-}
-
-.button-group button {
-  padding: 12px 20px;
-  border: none;
-  border-radius: 30px;
-  background-color: #b2ebf2;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.button-group button.active, .button-group button:hover {
-  background-color: #00acc1;
-  color: white;
-  transform: scale(1.05);
-}
-
-button.btn-primary {
-  background-color: #00acc1;
-  color: white;
-  padding: 15px 30px;
-  font-size: 1rem;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button.btn-primary:hover {
-  background-color: #0097a7;
-}
-
-textarea {
-  width: 100%;
-  padding: 12px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  resize: none;
-}
-
-.button-group button span.icon {
-  font-size: 1.2rem;
-}
 </style>
 </head>
 <body>
 
 <header>
-  <div>🌍 Wander With Style</div>
+  <div class="logo">🌍 WanderWithStyle</div>
   <nav>
     <a href="#">Home</a>
     <a href="#custom">Custom Plan</a>
@@ -144,130 +60,110 @@ textarea {
 </header>
 
 <div class="hero">
-  <h1>✨ Travel Plans That Fit You</h1>
-  <p>Scopri il tuo viaggio perfetto generato dall’AI</p>
+  <h1>✨ Crea il tuo Viaggio Perfetto</h1>
+  <button class="btn-primary" onclick="document.getElementById('custom').scrollIntoView({behavior:'smooth'})">Inizia Ora</button>
 </div>
 
 <section id="custom">
   <h2>Personalizza il Tuo Viaggio</h2>
   <div class="card">
     <label>Traveler Type:</label>
-    <div class="button-group" id="travelerType">
-      <button data-value="Solo Female">👩‍🦰 Solo Female</button>
-      <button data-value="Solo Male">👨 Solo Male</button>
-      <button data-value="LGBTQ+">🏳️‍🌈 LGBTQ+</button>
-      <button data-value="Couples">❤️ Couples</button>
-      <button data-value="Family">👨‍👩‍👧 Family</button>
-      <button data-value="Youth / Student">🎓 Youth / Student</button>
-      <button data-value="Senior">👵 Senior</button>
-      <button data-value="First-Time">✨ First-Time</button>
-      <button data-value="Plus-Size">💃 Plus-Size</button>
-      <button data-value="Pet-Friendly">🐶 Pet-Friendly</button>
-      <button data-value="Faith-Friendly">🙏 Faith-Friendly</button>
-      <button data-value="Accessible">♿ Accessible</button>
-    </div>
+    <div class="button-grid" id="travelerTypeButtons"></div>
 
     <label>Continent:</label>
-    <div class="button-group" id="continent">
-      <button data-value="Europe">🇪🇺 Europe</button>
-      <button data-value="Asia">🌏 Asia</button>
-      <button data-value="Africa">🌍 Africa</button>
-      <button data-value="North America">🇺🇸 North America</button>
-      <button data-value="South America">🌎 South America</button>
-      <button data-value="Oceania">🌊 Oceania</button>
-    </div>
+    <div class="button-grid" id="continentButtons"></div>
 
     <label>Country:</label>
-    <div class="button-group" id="country">
-      <button data-value="Italy">🇮🇹 Italy</button>
-      <button data-value="France">🇫🇷 France</button>
-      <button data-value="Japan">🇯🇵 Japan</button>
-      <button data-value="USA">🇺🇸 USA</button>
-      <button data-value="Australia">🇦🇺 Australia</button>
-      <button data-value="Brazil">🇧🇷 Brazil</button>
-      <button data-value="Greece">🇬🇷 Greece</button>
-      <button data-value="Portugal">🇵🇹 Portugal</button>
-      <button data-value="Spain">🇪🇸 Spain</button>
-      <button data-value="Thailand">🇹🇭 Thailand</button>
-      <button data-value="Egypt">🇪🇬 Egypt</button>
-      <button data-value="South Africa">🇿🇦 South Africa</button>
-    </div>
-
-    <label>Duration:</label>
-    <div class="button-group" id="duration">
-      <button data-value="1 Week">1 Week</button>
-      <button data-value="10 Days">10 Days</button>
-      <button data-value="2 Weeks">2 Weeks</button>
-      <button data-value="3 Weeks">3 Weeks</button>
-      <button data-value="1 Month">1 Month</button>
-    </div>
+    <div class="button-grid" id="countryButtons"></div>
 
     <label>Travel Type:</label>
-    <div class="button-group" id="travelType">
-      <button data-value="Adventure">🧗 Adventure</button>
-      <button data-value="Culture">🏛️ Culture</button>
-      <button data-value="Relaxation">🌴 Relaxation</button>
-      <button data-value="Religious">⛪ Religious</button>
-      <button data-value="Food & Wine">🍷 Food & Wine</button>
-      <button data-value="Romantic">💖 Romantic</button>
-      <button data-value="Wildlife">🐘 Wildlife</button>
-      <button data-value="Luxury">💎 Luxury</button>
-      <button data-value="Budget">💰 Budget</button>
-    </div>
+    <div class="button-grid" id="travelTypeButtons"></div>
 
-    <label>Notes / Preferences:</label>
+    <label>Durata:</label>
+    <input type="date" id="startDate"> fino a <input type="date" id="endDate">
+
+    <label>Note / Preferenze:</label>
     <textarea id="notes" placeholder="Es. Voglio visitare templi e cibo locale"></textarea>
 
-    <button class="btn-primary" id="previewBtn">Mostra Anteprima</button>
-  </div>
+    <button class="btn-secondary" id="previewBtn">👀 Mostra Anteprima</button>
 
-  <div id="preview" class="card" style="display:none;">
-    <h3>👀 Anteprima del Piano</h3>
-    <p id="previewText"></p>
-    <button class="btn-primary" id="checkoutBtn">💳 Paga e Ricevi PDF Completo</button>
+    <div id="preview">
+      <h3>Anteprima del Piano</h3>
+      <p id="previewText"></p>
+      <button class="btn-primary" id="checkoutBtn">💳 Paga e Ricevi PDF Completo</button>
+    </div>
   </div>
 </section>
 
 <section id="about">
-<h2>About</h2>
-<p>Questo sito genera piani di viaggio personalizzati usando l’intelligenza artificiale. Il PDF completo viene generato solo dopo il pagamento sicuro.</p>
+  <h2>About</h2>
+  <p>Questo sito genera piani di viaggio personalizzati usando l’intelligenza artificiale. Il PDF completo viene generato solo dopo il pagamento sicuro.</p>
 </section>
 
 <section id="contact">
-<h2>Contact</h2>
-<p>Email: <a href="mailto:customplans@wanderwithstyle.com">customplans@wanderwithstyle.com</a></p>
+  <h2>Contact</h2>
+  <p>Email: <a href="mailto:tuo@email.com">tuo@email.com</a></p>
 </section>
 
+<footer>
+  © 2025 WanderWithStyle
+</footer>
+
 <script>
-// Pulsanti selezione
-function setupButtonGroup(groupId) {
-  const group = document.getElementById(groupId);
-  const buttons = group.querySelectorAll('button');
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      buttons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+  // Dati
+  const travelerTypes = ["Solo Female","Solo Male","LGBTQ+","Couples","Family","Youth/Student","Senior","First-Time","Plus-Size","Pet-Friendly","Faith-Friendly","Accessible"];
+  const continents = ["Europe","Asia","Africa","North America","South America","Oceania"];
+  const travelTypes = ["Adventure","Culture","Relaxation","Religious","Food & Wine","Wellness","Nature","Luxury"];
+  const colors = ["#ff6f91","#6c5ce7","#00b894","#fdcb6e","#0984e3","#d63031","#e17055","#2d3436","#00cec9","#fab1a0"];
+
+  // Funzione per creare bottoni colorati
+  function createButtons(containerId, items) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = "";
+    items.forEach((item,i) => {
+      const btn = document.createElement("button");
+      btn.style.backgroundColor = colors[i % colors.length];
+      btn.innerHTML = `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>${item}`;
+      btn.addEventListener("click",()=>selectItem(containerId,item));
+      container.appendChild(btn);
     });
+  }
+
+  function selectItem(containerId,value){
+    console.log(containerId,value);
+    if(containerId==="continentButtons"){
+      // Mostra paesi in base al continente
+      let countries = [];
+      if(value==="Europe") countries=["Italy","France","Spain","Germany","Netherlands"];
+      if(value==="Asia") countries=["Japan","Thailand","China","India","Indonesia"];
+      if(value==="Africa") countries=["Egypt","South Africa","Morocco","Kenya","Tanzania"];
+      if(value==="North America") countries=["USA","Canada","Mexico","Costa Rica"];
+      if(value==="South America") countries=["Brazil","Argentina","Peru","Chile"];
+      if(value==="Oceania") countries=["Australia","New Zealand","Fiji"];
+      createButtons("countryButtons",countries);
+    }
+  }
+
+  createButtons("travelerTypeButtons",travelerTypes);
+  createButtons("continentButtons",continents);
+  createButtons("travelTypeButtons",travelTypes);
+
+  // Preview Button
+  const previewBtn = document.getElementById('previewBtn');
+  const previewDiv = document.getElementById('preview');
+  const previewText = document.getElementById('previewText');
+  previewBtn.addEventListener('click',()=>{
+    previewDiv.style.display='block';
+    previewText.innerText = `Hai selezionato il tuo viaggio: ${document.querySelector("#travelerTypeButtons button.active")?.innerText || "..."}, 
+Continente: ${document.querySelector("#continentButtons button.active")?.innerText || "..."}, 
+Paese: ${document.querySelector("#countryButtons button.active")?.innerText || "..."}, 
+Travel Type: ${document.querySelector("#travelTypeButtons button.active")?.innerText || "..."}, 
+Dal: ${document.getElementById('startDate').value} al ${document.getElementById('endDate').value}, Note: ${document.getElementById('notes').value}`;
   });
-}
-['travelerType','continent','country','duration','travelType'].forEach(setupButtonGroup);
 
-// Anteprima e pagamento
-const previewBtn = document.getElementById('previewBtn');
-const checkoutBtn = document.getElementById('checkoutBtn');
-const previewDiv = document.getElementById('preview');
-const previewText = document.getElementById('previewText');
-
-previewBtn.addEventListener('click', async () => {
-  previewDiv.style.display = 'block';
-  previewText.innerText = "Caricamento anteprima...";
-  // Qui collegare backend con OpenAI per generare anteprima
-  setTimeout(() => { previewText.innerText = "Anteprima generata dall'AI!"; }, 1000);
-});
-
-checkoutBtn.addEventListener('click', () => {
-  alert("Qui si collegherà Stripe per il pagamento.");
-});
+  // Checkout
+  const checkoutBtn = document.getElementById('checkoutBtn');
+  checkoutBtn.addEventListener('click',()=>alert("Qui collegheremo Stripe per il pagamento e generare PDF con AI"));
 </script>
 
 </body>
